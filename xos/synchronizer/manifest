@@ -1,0 +1,10 @@
+manifest
+model-deps
+run.sh
+steps/roles/create_index/tasks/main.yml
+steps/roles/create_index/templates/index.html.j2
+steps/roles/install_apache/tasks/main.yml
+steps/sync_vmmetenant.py
+steps/vmmetenant_playbook.yaml
+vmmeservice-synchronizer.py
+vmmeservice_config
