@@ -45,10 +45,9 @@ class VMMEServiceAdmin(ReadOnlyAwareAdmin):
         ('slices', 'Slices',),
         )
 
-    suit_form_includes = ((
-        'top',
-        'administration'),
-        )
+    suit_form_includes = (('mcordadmin.html',
+                           'top',
+                           'administration'),)
 
     def get_queryset(self, request):
         return VMMEService.get_service_objects_by_user(request.user)
