@@ -18,8 +18,6 @@ topology_template:
           admin_template: templates/mcordadmin.html  
           synchronizer: synchronizer/manifest  
           synchronizer_run: vmme-synchronizer.py
-          tosca_resource: tosca/resources/vmmetenant.py, tosca/resources/vmmeservice.py
-          #rest_service: subdirectory:vsg api/service/vsg/vsgservice.py
-          #rest_tenant: subdirectory:cord api/tenant/cord/vsg.py
+          tosca_resource: tosca/resources/vmmetenant.py, tosca/resources/vmmeservice.py 
           private_key: file:///opt/xos/key_import/vMME_rsa
           public_key: file:///opt/xos/key_import/vMME_rsa.pub
