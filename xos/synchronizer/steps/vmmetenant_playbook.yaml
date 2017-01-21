@@ -1,0 +1,10 @@
+--- 
+- hosts: {{ instance_name }} 
+  gather_facts: False 
+  connection: ssh 
+  user: ubuntu 
+  sudo: yes 
+  tasks: 
+ 
+  - name: write message 
+    shell: echo "{{ tenant_message }}" > /var/tmp/index.html 
