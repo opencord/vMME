@@ -4,8 +4,8 @@ from xosresource import XOSResource
 class XOSVMMETenant(XOSResource):
     provides = "tosca.nodes.VMMETenant"
     xos_model = VMMETenant
-    copyin_props = ["tenant_message"]  #should this be a list or a tuple (as in exampleservice) ? 
-    name_field = None  #should this be "service_specific id" (as in exampleservice) ? 
+    copyin_props = ["tenant_message", "image_name"]  
+    name_field = None  
 
     def get_xos_args(self, throw_exception=True):
         args = super(XOSVMMETenant, self).get_xos_args()

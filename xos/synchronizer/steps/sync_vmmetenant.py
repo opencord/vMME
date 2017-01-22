@@ -49,6 +49,6 @@ class SyncVMMETenant(SyncInstanceUsingAnsible):
     def get_extra_attributes(self, o):
         fields = {}
         fields['tenant_message'] = o.tenant_message
-        #vmmeservice = self.get_vmmeservice(o)   #not needed cause there's no service message 
+        fields['image_name'] = o.image_name
         return fields
 
