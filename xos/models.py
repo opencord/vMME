@@ -1,6 +1,6 @@
 # models.py -  ExampleService Models
 
-from core.models import Service, TenantWithContainer
+from core.models import Service, TenantWithContainer, Image
 from django.db import models, transaction
 
 
@@ -29,8 +29,8 @@ class VMMETenant(TenantWithContainer):
         verbose_name = "VMME Service Tenant"
 
     tenant_message = models.CharField(max_length=254, help_text="vMME message")
+    image_name = models.CharField(max_length=254, help_text="Name of VM image")
 
-    #default_attributes = {"tenant_message": "New vMME Component"}  will this work? 
     def __init__(self, *args, **kwargs):
         vmme_services = VMMEService.get_service_objects().all()
         if vmme_services:
@@ -45,6 +45,15 @@ class VMMETenant(TenantWithContainer):
         self.cleanup_container()
         super(VMMETenant, self).delete(*args, **kwargs)
 
+    @property
+    def image(self):
+        img = self.image_name.strip()
+        if img.lower() != "default":
+            return Image.objects.get(name=img)
+        else: 
+            return super(VMMETenant, self).image
+
+        
 
 def model_policy_vmmetenant(pk):
     with transaction.atomic():

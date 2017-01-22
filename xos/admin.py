@@ -73,6 +73,7 @@ class VMMETenantForm(forms.ModelForm):
         if self.instance:
             self.fields['creator'].initial = self.instance.creator
             self.fields['tenant_message'].initial = self.instance.tenant_message
+            self.fields['image_name'].initial = self.instance.image_name
 
         if (not self.instance) or (not self.instance.pk):
             self.fields['creator'].initial = get_request().user
@@ -82,6 +83,7 @@ class VMMETenantForm(forms.ModelForm):
     def save(self, commit=True):
         self.instance.creator = self.cleaned_data.get('creator')
         self.instance.tenant_message = self.cleaned_data.get('tenant_message')
+        self.instance.image_name = self.cleaned_data.get('image_name')
         return super(VMMETenantForm, self).save(commit=commit)
 
 
@@ -90,11 +92,11 @@ class VMMETenantAdmin(ReadOnlyAwareAdmin):
     verbose_name = "VMME Service Tenant"
     verbose_name_plural = "VMME Service Tenants"
 
-    list_display = ('id', 'backend_status_icon', 'instance', 'tenant_message')
-    list_display_links = ('backend_status_icon', 'instance', 'tenant_message', 'id')
+    list_display = ('id', 'backend_status_icon', 'instance', 'tenant_message', 'image_name')
+    list_display_links = ('backend_status_icon', 'instance', 'tenant_message', 'id', 'image_name')
 
     fieldsets = [(None, {
-        'fields': ['backend_status_text', 'kind', 'provider_service', 'instance', 'creator', 'tenant_message'],
+        'fields': ['backend_status_text', 'kind', 'provider_service', 'instance', 'creator', 'tenant_message', 'image_name'],
         'classes': ['suit-tab suit-tab-general'],
         })]
 
