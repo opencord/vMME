@@ -6,5 +6,5 @@
   sudo: yes 
   tasks: 
  
-  - name: write message 
-    shell: echo "{{ tenant_message }}" > /var/tmp/index.html 
+ # - name: write message
+ #   shell: echo "{{ tenant_message }}" > /var/tmp/index.html
