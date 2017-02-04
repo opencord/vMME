@@ -4,5 +4,5 @@ run.sh
 steps/sync_vmmetenant.py
 steps/vmmetenant_playbook.yaml
 stop.sh
-vmmeservice-synchronizer.py
+vmme-synchronizer.py
 vmmeservice_config
