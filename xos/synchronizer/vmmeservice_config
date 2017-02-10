@@ -3,7 +3,7 @@
 name=xos
 user=postgres
 password=password
-host=localhost
+host=xos_db
 port=5432
 
 # Required by XOS
@@ -14,11 +14,15 @@ nova_enabled=True
 # Sets options for the synchronizer
 [observer]
 name=vmmeservice
-dependency_graph=/opt/xos/synchronizers/vmmeservice/model-deps
-steps_dir=/opt/xos/synchronizers/vmmeservice/steps
-sys_dir=/opt/xos/synchronizers/vmmeservice/sys
+dependency_graph=/opt/xos/synchronizers/vmme/model-deps
+steps_dir=/opt/xos/synchronizers/vmme/steps
+sys_dir=/opt/xos/synchronizers/vmme/sys
 logfile=/var/log/xos_backend.log
 pretend=False
 backoff_disabled=True
 save_ansible_output=True
-proxy_ssh=False
+proxy_ssh=True
+proxy_ssh_key=/root/setup/id_rsa
+proxy_ssh_user=root
+[networking]
+use_vtn=True
