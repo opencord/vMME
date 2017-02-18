@@ -1,7 +1,7 @@
 import os
 import sys
 from django.db.models import Q, F
-from services.vmmeservice.models import VMMEService, VMMETenant
+from services.vmme.models import VMMEService, VMMETenant
 from synchronizers.base.SyncInstanceUsingAnsible import SyncInstanceUsingAnsible
 
 parentdir = os.path.join(os.path.dirname(__file__), "..")
