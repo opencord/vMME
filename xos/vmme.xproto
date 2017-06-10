@@ -1,0 +1,15 @@
+option name = "vmme";
+option app_label = "vmme";
+option verbose_name = "vMME Service";
+option kind = "vEPC";
+
+message VmmeService (Service){
+    required string service_message = 1 [help_text = "Service Message to Display", max_length = 254, null = False, db_index = False, blank = False];
+}
+
+
+message VmmeTenant (TenantWithContainer){
+     option name = "vmmetenant";
+     option verbose_name = "vMME Tenant";
+     required string tenant_message = 1 [help_text = "Tenant Message to Display", max_length = 254, null = False, db_index = False, blank = False];
+}

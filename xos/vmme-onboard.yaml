@@ -10,7 +10,7 @@ topology_template:
     servicecontroller#vmme:
       type: tosca.nodes.ServiceController
       properties:
-          base_url: file:///opt/xos_services/vMME/xos/
+          base_url: file:///opt/xos_services/vmme/xos/
           # The following will concatenate with base_url automatically, if
           # base_url is non-null.
           models: models.py
@@ -19,5 +19,5 @@ topology_template:
           synchronizer: synchronizer/manifest  
           synchronizer_run: vmme-synchronizer.py
           tosca_resource: tosca/resources/vmmetenant.py, tosca/resources/vmmeservice.py 
-          private_key: file:///opt/xos/key_import/vMME_rsa
-          public_key: file:///opt/xos/key_import/vMME_rsa.pub
+          private_key: file:///opt/xos/key_import/mcord_rsa
+          public_key: file:///opt/xos/key_import/mcord_rsa.pub
