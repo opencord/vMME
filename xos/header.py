@@ -13,11 +13,3 @@ from xos.exceptions import *
 from xos.config import Config
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
-
-class ConfigurationError(Exception):
-    pass
-
-VMME_KIND = "vEPC"
-
-CORD_USE_VTN = getattr(Config(), "networking_use_vtn", False)
-
