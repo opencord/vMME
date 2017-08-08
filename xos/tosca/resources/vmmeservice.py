@@ -1,5 +1,5 @@
-from services.vmme.models import VMMEService
 from service import XOSService
+from services.vmme.models import VMMEService
 
 class XOSVMMEService(XOSService):
 	provides = "tosca.nodes.VMMEService"

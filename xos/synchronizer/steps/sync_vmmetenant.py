@@ -18,7 +18,7 @@ class SyncVMMETenant(SyncInstanceUsingAnsible):
 
     template_name = "vmmetenant_playbook.yaml"
 
-    service_key_name = "/opt/xos/synchronizers/vmme/vmme_private_key"
+    service_key_name = "/opt/xos/configurations/mcord/mcord_private_key"
 
     def __init__(self, *args, **kwargs):
         super(SyncVMMETenant, self).__init__(*args, **kwargs)
@@ -34,22 +34,10 @@ class SyncVMMETenant(SyncInstanceUsingAnsible):
 
         return objs
 
-    def get_vmmeservice(self, o):
-        if not o.provider_service:
-            return None
-
-        vmmeservice = VMMEService.get_service_objects().filter(id=o.provider_service.id)
-
-        if not vmmeservice:
-            return None
-
-        return vmmeservice[0]
-
     # Gets the attributes that are used by the Ansible template but are not
     # part of the set of default attributes.
     def get_extra_attributes(self, o):
         fields = {}
         fields['tenant_message'] = o.tenant_message
-        fields['image_name'] = o.image_name
         return fields
 

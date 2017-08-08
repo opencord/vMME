@@ -14,8 +14,6 @@ topology_template:
           # The following will concatenate with base_url automatically, if
           # base_url is non-null.
           xproto: ./
-          admin: admin.py
-          admin_template: templates/mcordadmin.html  
           tosca_custom_types: tosca/custom_types/vmme.yaml
           synchronizer: synchronizer/manifest  
           synchronizer_run: vmme-synchronizer.py

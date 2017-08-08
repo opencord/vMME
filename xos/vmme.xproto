@@ -1,15 +1,16 @@
-option name = "vmme";
+option name = "vMME";
+option verbose_name = "Virtual Mobility Management Entity";
 option app_label = "vmme";
-option verbose_name = "vMME Service";
 option kind = "vEPC";
 option legacy = "True";
 
 message VMMEService (Service){
-    required string service_message = 1 [help_text = "Service Message to Display", max_length = 254, null = False, db_index = False, blank = False];
+    option name = "VMMEService";
+    option verbose_name = "Virtual Mobility Management Entity Service";
 }
 
 message VMMETenant (TenantWithContainer){
-     option name = "vmmetenant";
-     option verbose_name = "vMME Tenant";
+     option name = "VMMETenant";
+     option verbose_name = "Virtual Mobility Management Entity Tenant";
      required string tenant_message = 1 [help_text = "Tenant Message to Display", max_length = 254, null = False, db_index = False, blank = False];
 }
