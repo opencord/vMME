@@ -79,7 +79,7 @@ node_types:
                 required: false
                 description: Version number of Service.
                 
-    tosca.nodes.MMETenant:
+    tosca.nodes.VMMETenant:
         derived_from: tosca.nodes.Root
         description: >
             VMME Tenant

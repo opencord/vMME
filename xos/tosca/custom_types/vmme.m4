@@ -16,7 +16,7 @@ node_types:
             xos_base_props
             xos_base_service_props
                 
-    tosca.nodes.MMETenant:
+    tosca.nodes.VMMETenant:
         derived_from: tosca.nodes.Root
         description: >
             VMME Tenant
