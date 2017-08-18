@@ -12,7 +12,7 @@ from django.db.models import *
 from operator import itemgetter, attrgetter, methodcaller
 from core.models import Tag
 from core.models.service import LeastLoadedNodeScheduler
-from services.vsgw.models import VSGWService, VSGWTenant
+from services.vsgwc.models import VSGWCService, VSGWCTenant
 from services.vpgwc.models import VPGWCService, VPGWCTenant
 from services.vhss.models import VHSSService, VHSSTenant
 import traceback
@@ -34,26 +34,26 @@ class VMMETenant(VMMETenant_decl):
        if vmmeservices:
            self._meta.get_field("provider_service").default = vmmeservices[0].id
        super(VMMETenant, self).__init__(*args, **kwargs)
-       self.cached_vsgw = None
+       self.cached_vsgwc = None
        self.cached_vpgwc = None
        self.cached_vhss = None
 
    @property
-   def vsgw(self):
-       vsgw = self.get_newest_subscribed_tenant(VSGWTenant)
-       if not vsgw:
+   def vsgwc(self):
+       vsgwc = self.get_newest_subscribed_tenant(VSGWCTenant)
+       if not vsgwc:
            return None
 
-       if (self.cached_vsgw) and (self.cached_vsgw.id == vsgw.id):
-            return self.cached_vsgw
+       if (self.cached_vsgwc) and (self.cached_vsgwc.id == vsgwc.id):
+            return self.cached_vsgwc
 
-       vsgw.caller = self.creator
-       self.cached_vsgw = vsgw
-       return vsgw      
+       vsgwc.caller = self.creator
+       self.cached_vsgwc = vsgwc
+       return vsgwc      
 
-   @vsgw.setter
-   def vsgw(self, value):
-       raise XOSConfigurationError("VMMETenant.vsgw setter is not implemeneted")
+   @vsgwc.setter
+   def vsgwc(self, value):
+       raise XOSConfigurationError("VMMETenant.vsgwc setter is not implemeneted")
 
    @property
    def vpgwc(self):
@@ -90,11 +90,11 @@ class VMMETenant(VMMETenant_decl):
        raise XOSConfigurationError("VMMETenant.vhss setter is not implemeneted")
 
    # This model breaks down if there are multiple service objects
-   def get_vsgw_service(self):
-       vsgwservices = VSGWService.get_service_objects().all()
-       if not vsgwservices:
-           raise XOSConfigurationError("No VSGW Services available")
-       return vsgwservices[0]
+   def get_vsgwc_service(self):
+       vsgwcservices = VSGWCService.get_service_objects().all()
+       if not vsgwcservices:
+           raise XOSConfigurationError("No VSGWC Services available")
+       return vsgwcservices[0]
 
    def get_vpgwc_service(self):
        vpgwcservices = VPGWCService.get_service_objects().all()
@@ -108,13 +108,13 @@ class VMMETenant(VMMETenant_decl):
            raise XOSConfigurationError("No VHSS Services available")
        return vhssservices[0]
 
-   def manage_vsgw(self):
-       # Each vMME object owns exactly one VSGWTenant object
+   def manage_vsgwc(self):
+       # Each vMME object owns exactly one VSGWCTenant object
        if self.deleted:
            return
 
-       if self.vsgw is None:
-           vsgw = self.get_vsgw_service().create_tenant(subscriber_tenant=self, creator=self.creator)
+       if self.vsgwc is None:
+           vsgwc = self.get_vsgwc_service().create_tenant(subscriber_tenant=self, creator=self.creator)
 
    def manage_vpgwc(self):
        # Each vMME object owns exactly one VPGWCTenant object
@@ -132,9 +132,9 @@ class VMMETenant(VMMETenant_decl):
        if self.vhss is None:
            vhss = self.get_vhss_service().create_tenant(subscriber_tenant=self, creator=self.creator)
 
-   def cleanup_vsgw(self):
-       if self.vsgw:
-           self.vsgw.delete()
+   def cleanup_vsgwc(self):
+       if self.vsgwc:
+           self.vsgwc.delete()
 
    def cleanup_vpgwc(self):
        if self.vpgwc:
@@ -145,14 +145,14 @@ class VMMETenant(VMMETenant_decl):
            self.vhss.delete()
   
    def cleanup_orphans(self):
-       # ensure vMME only has one vSGW, vPGWC, and vHSS
-       cur_vsgw = self.vsgw
+       # ensure vMME only has one vSGWC, vPGWC, and vHSS
+       cur_vsgwc = self.vsgwc
        cur_vpgwc = self.vpgwc
        cur_vhss = self.vhss
 
-       for vsgw in list(self.get_subscribed_tenants(VSGWTenant)):
-           if (not cur_vsgw) or (vsgw.id != cur_vsgw.id):
-              vsgw.delete()
+       for vsgwc in list(self.get_subscribed_tenants(VSGWCTenant)):
+           if (not cur_vsgwc) or (vsgwc.id != cur_vsgwc.id):
+              vsgwc.delete()
 
        for vpgwc in list(self.get_subscribed_tenants(VPGWCTenant)):
            if (not cur_vpgwc) or (vpgwc.id != cur_vpgwc.id):
@@ -175,7 +175,7 @@ class VMMETenant(VMMETenant_decl):
 
    def delete(self, *args, **kwargs):
        # Delete the instance that was created for this tenant
-       self.cleanup_vsgw()
+       self.cleanup_vsgwc()
        self.cleanup_vpgwc()
        self.cleanup_vhss()
        self.cleanup_container()
@@ -191,7 +191,7 @@ def model_policy_vmmetenant(pk):
         # Since this code is atomic it is safe to always use the first tenant
         tenant = tenant[0]
         tenant.manage_container()
-        tenant.manage_vsgw()
+        tenant.manage_vsgwc()
         tenant.manage_vpgwc()
         tenant.manage_vhss()
         tenant.cleanup_orphans()
