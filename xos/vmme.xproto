@@ -12,5 +12,4 @@ message VMMEService (Service){
 message VMMETenant (TenantWithContainer){
      option name = "VMMETenant";
      option verbose_name = "Virtual Mobility Management Entity Tenant";
-     required string tenant_message = 1 [help_text = "Tenant Message to Display", max_length = 254, null = False, db_index = False, blank = False];
 }

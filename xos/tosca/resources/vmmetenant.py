@@ -6,7 +6,7 @@ class XOSVMMETenant(XOSResource):
     provides = "tosca.nodes.VMMETenant"
     xos_model = VMMETenant
     name_field = None 
-    copyin_props = ("tenant_message",) 
+    copyin_props = () 
 
     def get_xos_args(self, throw_exception=True):
         args = super(XOSVMMETenant, self).get_xos_args()
