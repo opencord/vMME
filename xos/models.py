@@ -1,5 +1,6 @@
 from core.models.plcorebase import *
 from models_decl import VMMEService_decl
+from models_decl import VMMEVendor_decl
 from models_decl import VMMETenant_decl
 
 from django.db import models
@@ -25,6 +26,10 @@ class VMMEService(VMMEService_decl):
        t.save()
        return t
 
+class VMMEVendor(VMMEVendor_decl):
+   class Meta:
+        proxy = True 
+
 class VMMETenant(VMMETenant_decl):
    class Meta:
         proxy = True 
@@ -34,6 +39,17 @@ class VMMETenant(VMMETenant_decl):
        if vmmeservices:
            self._meta.get_field("provider_service").default = vmmeservices[0].id
        super(VMMETenant, self).__init__(*args, **kwargs)
+
+   @property
+   def image(self):
+       if not self.vmme_vendor:
+           return super(VMMETenant, self).image
+       return self.vmme_vendor.image
+   
+   def save_instance(self, instance):
+       if self.vmme_vendor:
+           instance.flavor = self.vmme_vendor.flavor
+       super(VMMETenant, self).save_instance(instance)
 
    def save(self, *args, **kwargs):
        if not self.creator:

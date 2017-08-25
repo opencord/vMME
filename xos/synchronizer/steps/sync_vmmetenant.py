@@ -34,10 +34,3 @@ class SyncVMMETenant(SyncInstanceUsingAnsible):
 
         return objs
 
-    # Gets the attributes that are used by the Ansible template but are not
-    # part of the set of default attributes.
-    def get_extra_attributes(self, o):
-        fields = {}
-        fields['tenant_message'] = o.tenant_message
-        return fields
-

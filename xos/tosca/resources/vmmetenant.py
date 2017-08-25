@@ -29,3 +29,4 @@ class XOSVMMETenant(XOSResource):
 
     def can_delete(self, obj):
         return super(XOSVMMETenant, self).can_delete(obj)
+

@@ -17,6 +17,7 @@ topology_template:
           tosca_custom_types: tosca/custom_types/vmme.yaml
           synchronizer: synchronizer/manifest  
           synchronizer_run: vmme-synchronizer.py
-          tosca_resource: tosca/resources/vmmetenant.py, tosca/resources/vmmeservice.py 
+          tosca_resource: tosca/resources/vmmetenant.py, tosca/resources/vmmeservice.py, tosca/resources/vmmevendor.py 
           private_key: file:///opt/xos/key_import/mcord_rsa
           public_key: file:///opt/xos/key_import/mcord_rsa.pub
+
