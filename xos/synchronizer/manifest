@@ -1,8 +1,0 @@
-manifest
-model-deps
-run.sh
-steps/sync_vmmetenant.py
-steps/vmmetenant_playbook.yaml
-stop.sh
-vmme-synchronizer.py
-vmmeservice_config
