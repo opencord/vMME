@@ -28,6 +28,7 @@ node_types:
         description: >
             VMME Vendor
         properties:
+            xos_base_props
             name:
                 type: string
                 required: true
