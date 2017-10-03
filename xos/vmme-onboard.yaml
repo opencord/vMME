@@ -1,4 +1,3 @@
-
 # Copyright 2017-present Open Networking Foundation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 tosca_definitions_version: tosca_simple_yaml_1_0
 
 description: Onboard the vMME service
@@ -26,14 +24,14 @@ topology_template:
     servicecontroller#vmme:
       type: tosca.nodes.ServiceController
       properties:
-          base_url: file:///opt/xos_services/vMME/xos/
+          base_url: file:///opt/xos_services/vmme/xos/
           # The following will concatenate with base_url automatically, if
           # base_url is non-null.
-          models: models.py
-          admin: admin.py
-          admin_template: templates/mcordadmin.html  
+          xproto: ./
+          tosca_custom_types: tosca/custom_types/vmme.yaml
           synchronizer: synchronizer/manifest  
           synchronizer_run: vmme-synchronizer.py
-          tosca_resource: tosca/resources/vmmetenant.py, tosca/resources/vmmeservice.py 
-          private_key: file:///opt/xos/key_import/vMME_rsa
-          public_key: file:///opt/xos/key_import/vMME_rsa.pub
+          tosca_resource: tosca/resources/vmmetenant.py, tosca/resources/vmmeservice.py, tosca/resources/vmmevendor.py 
+          private_key: file:///opt/xos/key_import/mcord_rsa
+          public_key: file:///opt/xos/key_import/mcord_rsa.pub
+

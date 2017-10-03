@@ -1,0 +1,25 @@
+option name = "vMME";
+option verbose_name = "Virtual Mobility Management Entity";
+option app_label = "vmme";
+option kind = "vEPC";
+option legacy = "True";
+
+message VMMEService (Service){
+    option name = "VMMEService";
+    option verbose_name = "Virtual Mobility Management Entity Service";
+}
+
+message VMMEVendor (PlCoreBase){
+    option name = "VMMEVendor";
+    option verbose_name = "Virtual Mobility Management Entity Vendor";
+    required string name = 1 [help_text = "vendor name", max_length = 32, null = False, db_index = False, blank = False]; 
+    required manytoone image->Image:+ = 2 [help_text = "select image for this vendor", db_index = True, null = False, blank = False];
+    required manytoone flavor->Flavor:+ = 3 [help_text = "select openstack flavor for vendor image", db_index = True, null = False, blank = False];
+}
+
+message VMMETenant (TenantWithContainer){
+    option name = "VMMETenant";
+    option verbose_name = "Virtual Mobility Management Entity Tenant";
+    optional manytoone vmme_vendor->VMMEVendor:vendor_tenants = 1 [help_text = "select vendor of choice, leave blank for slice default", db_index = True, null = True, blank = True]; 
+}
+

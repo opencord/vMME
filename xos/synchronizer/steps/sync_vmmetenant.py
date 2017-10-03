@@ -1,4 +1,3 @@
-
 # Copyright 2017-present Open Networking Foundation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 import os
 import sys
 from django.db.models import Q, F
-from services.vmme.models import VMMEService, VMMETenant
-from synchronizers.base.SyncInstanceUsingAnsible import SyncInstanceUsingAnsible
+#from services.vmme.models import VMMEService, VMMETenant
+from synchronizers.new_base.modelaccessor import *
+from synchronizers.new_base.SyncInstanceUsingAnsible import SyncInstanceUsingAnsible
 
 parentdir = os.path.join(os.path.dirname(__file__), "..")
 sys.path.insert(0, parentdir)
@@ -33,7 +32,7 @@ class SyncVMMETenant(SyncInstanceUsingAnsible):
 
     template_name = "vmmetenant_playbook.yaml"
 
-    service_key_name = "/opt/xos/synchronizers/vmme/vmme_private_key"
+    service_key_name = "/opt/xos/configurations/mcord/mcord_private_key"
 
     def __init__(self, *args, **kwargs):
         super(SyncVMMETenant, self).__init__(*args, **kwargs)
@@ -48,23 +47,4 @@ class SyncVMMETenant(SyncInstanceUsingAnsible):
             objs = VMMETenant.get_deleted_tenant_objects()
 
         return objs
-
-    def get_vmmeservice(self, o):
-        if not o.provider_service:
-            return None
-
-        vmmeservice = VMMEService.get_service_objects().filter(id=o.provider_service.id)
-
-        if not vmmeservice:
-            return None
-
-        return vmmeservice[0]
-
-    # Gets the attributes that are used by the Ansible template but are not
-    # part of the set of default attributes.
-    def get_extra_attributes(self, o):
-        fields = {}
-        fields['tenant_message'] = o.tenant_message
-        fields['image_name'] = o.image_name
-        return fields
 

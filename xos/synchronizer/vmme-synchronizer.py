@@ -1,4 +1,3 @@
-
 # Copyright 2017-present Open Networking Foundation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,17 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 #!/usr/bin/env python
 
-# This imports and runs ../../xos-observer.py
 # Runs the standard XOS observer
 
 import importlib
 import os
 import sys
+
 observer_path = os.path.join(os.path.dirname(
-    os.path.realpath(__file__)), "../../synchronizers/base")
+    os.path.realpath(__file__)), "../../synchronizers/new_base")
 sys.path.append(observer_path)
 mod = importlib.import_module("xos-synchronizer")
 mod.main()
