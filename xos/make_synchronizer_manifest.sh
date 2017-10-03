@@ -1,3 +1,4 @@
+#! /bin/bash
 
 # Copyright 2017-present Open Networking Foundation
 #
@@ -13,6 +14,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-#! /bin/bash
 find synchronizer -type f | cut -b 14- > synchronizer/manifest 

@@ -1,4 +1,3 @@
-
 # Copyright 2017-present Open Networking Foundation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +12,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-# Kill the observer
-pkill -9 -f vmme-synchronizer.py
+export XOS_DIR=/opt/xos
+python vmme-synchronizer.py  -C $XOS_DIR/synchronizers/vmme/vmme_from_api_config

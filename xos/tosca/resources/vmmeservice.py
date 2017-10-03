@@ -1,4 +1,3 @@
-
 # Copyright 2017-present Open Networking Foundation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-from services.vmme.models import VMMEService
 from service import XOSService
+from services.vmme.models import VMMEService
 
 class XOSVMMEService(XOSService):
 	provides = "tosca.nodes.VMMEService"
 	xos_model = VMMEService
 	copyin_props = ["view_url", "icon_url", "enabled", "published", "public_key", "private_key_fn", "versionNumber"]
+
