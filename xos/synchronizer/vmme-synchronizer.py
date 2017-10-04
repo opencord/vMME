@@ -14,14 +14,18 @@
 
 #!/usr/bin/env python
 
-# Runs the standard XOS observer
+# This imports and runs ../../xos-observer.py
 
 import importlib
 import os
 import sys
 
-observer_path = os.path.join(os.path.dirname(
-    os.path.realpath(__file__)), "../../synchronizers/new_base")
+from xosconfig import Config
+config_file = os.path.abspath(os.path.dirname(os.path.realpath(__file__)) + '/vmme_config.yaml')
+
+Config.init(config_file, 'synchronizer-config-schema.yaml')
+observer_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../../synchronizers/new_base")
+
 sys.path.append(observer_path)
 mod = importlib.import_module("xos-synchronizer")
 mod.main()
