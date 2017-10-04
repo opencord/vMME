@@ -13,7 +13,7 @@
 # limitations under the License.
 
 from xosresource import XOSResource
-from core.models import Tenant, Service
+from core.models import ServiceInstance, Service
 from services.vmme.models import VMMETenant
 
 class XOSVMMETenant(XOSResource):

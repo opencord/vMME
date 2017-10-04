@@ -12,14 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from core.models.plcorebase import *
 from models_decl import VMMEService_decl
 from models_decl import VMMEVendor_decl
 from models_decl import VMMETenant_decl
 
 from django.db import models
-from core.models import Service, PlCoreBase, Slice, Instance, Tenant, TenantWithContainer, Node, Image, User, Flavor, NetworkParameter, NetworkParameterType, Port, AddressPool
-from core.models.plcorebase import StrippedCharField
+from core.models import Service, XOSBase, Slice, Instance, ServiceInstance, TenantWithContainer, Node, Image, User, Flavor, NetworkParameter, NetworkParameterType, Port, AddressPool
 import os
 from django.db import models, transaction
 from django.forms.models import model_to_dict
@@ -29,7 +27,6 @@ from core.models import Tag
 from core.models.service import LeastLoadedNodeScheduler
 import traceback
 from xos.exceptions import *
-from xos.config import Config
 
 class VMMEService(VMMEService_decl):
    class Meta:
