@@ -13,4 +13,10 @@
 # limitations under the License.
 
 
-python vmme-synchronizer.py
+name: vmme-synchronizer
+accessor:
+  username: xosadmin@opencord.org
+  password: "@/opt/xos/services/vmme/credentials/xosadmin@opencord.org"
+dependency_graph: "/opt/xos/synchronizers/vmme/model-deps"
+steps_dir: "/opt/xos/synchronizers/vmme/steps"
+sys_dir: "/opt/xos/synchronizers/vmme/sys"
