@@ -30,25 +30,25 @@ from xos.exceptions import *
 
 class VMMEService(VMMEService_decl):
    class Meta:
-        proxy = True 
+        proxy = True
 
    def create_tenant(self, **kwargs):
-       t = VMMETenant(kind="vEPC", provider_service=self, connect_method="na", **kwargs)
+       t = VMMETenant(kind="vEPC", owner=self, connect_method="na", **kwargs)
        t.save()
        return t
 
 class VMMEVendor(VMMEVendor_decl):
    class Meta:
-        proxy = True 
+        proxy = True
 
 class VMMETenant(VMMETenant_decl):
    class Meta:
-        proxy = True 
+        proxy = True
 
    def __init__(self, *args, **kwargs):
        vmmeservices = VMMEService.get_service_objects().all()
        if vmmeservices:
-           self._meta.get_field("provider_service").default = vmmeservices[0].id
+           self._meta.get_field("owner").default = vmmeservices[0].id
        super(VMMETenant, self).__init__(*args, **kwargs)
 
    @property
@@ -56,7 +56,7 @@ class VMMETenant(VMMETenant_decl):
        if not self.vmme_vendor:
            return super(VMMETenant, self).image
        return self.vmme_vendor.image
-   
+
    def save_instance(self, instance):
        if self.vmme_vendor:
            instance.flavor = self.vmme_vendor.flavor
