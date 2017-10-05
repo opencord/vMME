@@ -37,14 +37,4 @@ class SyncVMMETenant(SyncInstanceUsingAnsible):
     def __init__(self, *args, **kwargs):
         super(SyncVMMETenant, self).__init__(*args, **kwargs)
 
-    def fetch_pending(self, deleted):
-
-        if (not deleted):
-            objs = VMMETenant.get_tenant_objects().filter(
-                Q(enacted__lt=F('updated')) | Q(enacted=None), Q(lazy_blocked=False))
-        else:
-            # If this is a deletion we get all of the deleted tenants..
-            objs = VMMETenant.get_deleted_tenant_objects()
-
-        return objs
 
