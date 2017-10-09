@@ -20,3 +20,4 @@ accessor:
 dependency_graph: "/opt/xos/synchronizers/vmme/model-deps"
 steps_dir: "/opt/xos/synchronizers/vmme/steps"
 sys_dir: "/opt/xos/synchronizers/vmme/sys"
+model_policies_dir: "/opt/xos/synchronizers/vmme/model_policies"
