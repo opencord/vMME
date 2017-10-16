@@ -1,6 +1,5 @@
 option name = "vMME";
 option app_label = "vmme";
-option kind = "vEPC";
 
 message VMMEService (Service){
     option verbose_name = "Virtual Mobility Management Entity Service";
