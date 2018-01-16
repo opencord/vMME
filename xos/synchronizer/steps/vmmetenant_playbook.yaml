@@ -13,11 +13,21 @@
 # limitations under the License.
 
 ---
-- hosts: {{ instance_name }} 
-  gather_facts: False 
-  connection: ssh 
-  user: ubuntu 
-  sudo: yes 
-  tasks: 
+- hosts: {{ instance_name }}
+  gather_facts: False
+  connection: ssh
+  remote_user: ubuntu
+  become: yes
   vars:
- 
+    - source_path: /home/c3po/mme
+    - identity: "mme.localdomain"
+    - realm: "localdomain"
+    - connect_peer: "hss.openair4G.eur"
+    - hss_port: 3868
+    - s6a_hss_ip: {{ s6a_hss_ip }}
+    - s1mme_enb_ip: {{ s1mme_enb_ip }}
+    - s1mme_mme_ip: {{ s1mme_mme_ip }}
+    - s11_mme_ip: {{ s11_mme_ip }}
+    - s11_sgw_ip: {{ s11_sgw_ip }}
+  roles:
+    - sprint_mme_setup

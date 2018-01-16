@@ -1,0 +1,91 @@
+{#
+Copyright 2017-present Open Networking Foundation
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+#}
+# Configuration file for MME
+
+#####  NOTE: Please Do NOT change the order of the parameters #####
+
+# EGTP related
+VBSM_EG_DFLT_PORT                2123                     # EGTP Default port
+VBSM_EG_NONDFLT_PORT             2124                     # EGTP Non Default port
+VBSM_EG_S10_NONDFLT_PORT         2125                     # EGTP Non Default
+VBSM_EG_S3_NONDFLT_PORT          2126                     # EGTP Non Default port for S3 interface towards SGSN
+                                                          # port for S10
+VBSM_EG_DFLT_HOST_NAME           "sutlej.ccin.ccpu.com"   # EGTP host name
+
+
+# E-NodeB related
+VBSM_ENB_ADDR_1                  "{{ s1mme_enb_ip }}"      # IP address of eNodeB
+VBSM_ENB_PORT_1                  32767              # eNodeB port
+#VBSM_ENB_ADDR_2                  "172.26.20.180"      # IP address of eNodeB
+#VBSM_ENB_PORT_2                  36422              # eNodeB port
+
+# MME related
+VBSM_MME_IPADDR                  "{{ s1mme_mme_ip }}"    # MME IP address
+VBSM_MME_S1AP_IPADDR             "{{ s1mme_mme_ip }}"    # MME IP address associated with the S1AP interface
+VBSM_MME_EGTP_IPADDR             "{{ s11_mme_ip }}"    # MME IP address associated with the EGTP interface
+VBSM_MME_SCTP_PORT               36412           # MME SCTP port
+
+VBSM_SGW_IPADDR                  "{{ s11_sgw_ip }}"   # SGW IP address
+VBSM_PGW_IPADDR                  "192.168.1.105"    # PDN-GW IP address
+
+VBSM_UE_NUM                      32             # DEC_14_FIX: Changes to support 35 UE's
+VBSM_SCTP_UDP_SERV_TYPE          0              #service type,default 0 SCTP
+
+# Debug mask to be set; each represent
+#different debug masks to be set (1 and 0 to unset)
+#in the form |LVB_DBGMASK_INFO|LVB_DBGMASK_ERROR|LVB_DBGMASK_TRC|LVB_DBGMASK_MEM
+
+VBSM_MME_DBG_MASK                1111
+VBSM_DBG_MASK                    1111
+VBSM_NW_INIATED_DETACH_TIMER     1000
+
+VBSM_MCC_DIG1         2
+VBSM_MCC_DIG2         0
+VBSM_MCC_DIG3         8
+
+VBSM_MNC_DIG1         0
+VBSM_MNC_DIG2         1
+VBSM_MNC_DIG3         -1 
+
+# Target PLMN ID format [ MCC + MNC], + is concatination operator
+# If MNC has two digits, the last charater shall be 'f'
+# Valid Configurations: 11223f, 112345.
+VBSM_TARGET_MME_PLMN_ID          31310f
+VBSM_TARGET_MME_IP_ADDR          "192.25.1.100"
+
+VBSM_T3412                        32
+
+VBSM_SGSN_IP_ADDR                "192.25.1.195"
+
+
+VBSM_SGSN_PLMN_ID        31311f
+
+VBSM_FD_CFG  "vbfd.conf"
+VBSM_HSS_HOST "hss.openair4G.eur"
+VBSM_HSS_REALM "openair4G.eur"
+
+# set VBSM_DISABLE_EPC_DNS 0 - enable DNS,  1 - disable DNS
+VBSM_DISABLE_EPC_DNS 1
+VBSM_REL_CAP 1
+VBSM_MME_NAME "vmme_standalone"
+VBSM_S1C_SCTP_INSTREAMS 10
+VBSM_S1C_SCTP_OUTSTREAMS 10
+VBSM_MAX_ENB  2
+VBSM_NO_OFGUMMEIS 1
+VBSM_MMECODE  1
+VBSM_MMEGRPID 1
+VBSM_NO_OF_TAI 1
+VBSM_TAI_LIST    {{1,2,0,8,0,1,1}}

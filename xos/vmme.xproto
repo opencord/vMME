@@ -16,6 +16,7 @@ message VMMEVendor (XOSBase){
 message VMMETenant (TenantWithContainer){
     option verbose_name = "Virtual Mobility Management Entity Service Instance";
 
-    optional manytoone vmme_vendor->VMMEVendor:vendor_tenants = 1 [help_text = "select vendor of choice, leave blank for slice default", db_index = True, null = True, blank = True]; 
+    optional manytoone vmme_vendor->VMMEVendor:vendor_tenants = 1 [help_text = "select vendor of choice, leave blank for slice default", db_index = True, null = True, blank = True];
+    optional string enodeb_ip_addr = 2 [help_text = "external eNodeB IP address", max_length = 32, null = True, db_index = False, blank = True];
 }
 

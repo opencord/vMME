@@ -1,5 +1,3 @@
-#! /bin/bash
-
 # Copyright 2017-present Open Networking Foundation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,4 +12,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-find synchronizer -type f | cut -b 14- > synchronizer/manifest 
+#! /bin/bash
+find synchronizer -type f | cut -b 14- > synchronizer/manifest
