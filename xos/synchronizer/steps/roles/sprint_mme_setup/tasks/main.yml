@@ -12,7 +12,15 @@
   args:
     chdir: "{{ source_path }}"
 
-- name: Run vb_acc
-  shell: "./vb_acc"
+- name: Kill running MME
+  shell: "killall -w {{ item }}"
+  ignore_errors: yes
+  with_items:
+    - tmux
+    - vb_acc
+
+# vb_acc exits if it's not run with a TTY (?)
+- name: Run MME
+  shell: tmux new -d 'while true; do ./vb_acc >> /tmp/vb_acc.output 2>&1; sleep 15; done'
   args:
     chdir: "{{ source_path }}"
