@@ -28,7 +28,7 @@ VBSM_EG_DFLT_HOST_NAME           "sutlej.ccin.ccpu.com"   # EGTP host name
 
 # E-NodeB related
 VBSM_ENB_ADDR_1                  "{{ s1mme_enb_ip }}"      # IP address of eNodeB
-VBSM_ENB_PORT_1                  32767              # eNodeB port
+VBSM_ENB_PORT_1                  36412              # eNodeB port
 #VBSM_ENB_ADDR_2                  "172.26.20.180"      # IP address of eNodeB
 #VBSM_ENB_PORT_2                  36422              # eNodeB port
 
@@ -52,18 +52,18 @@ VBSM_MME_DBG_MASK                1111
 VBSM_DBG_MASK                    1111
 VBSM_NW_INIATED_DETACH_TIMER     1000
 
-VBSM_MCC_DIG1         2
+VBSM_MCC_DIG1         3
 VBSM_MCC_DIG2         0
-VBSM_MCC_DIG3         8
+VBSM_MCC_DIG3         2
 
-VBSM_MNC_DIG1         0
-VBSM_MNC_DIG2         1
-VBSM_MNC_DIG3         -1 
+VBSM_MNC_DIG1         7
+VBSM_MNC_DIG2         2
+VBSM_MNC_DIG3         0
 
 # Target PLMN ID format [ MCC + MNC], + is concatination operator
 # If MNC has two digits, the last charater shall be 'f'
 # Valid Configurations: 11223f, 112345.
-VBSM_TARGET_MME_PLMN_ID          31310f
+VBSM_TARGET_MME_PLMN_ID          302720
 VBSM_TARGET_MME_IP_ADDR          "192.25.1.100"
 
 VBSM_T3412                        32
@@ -81,7 +81,7 @@ VBSM_HSS_REALM "openair4G.eur"
 VBSM_DISABLE_EPC_DNS 1
 VBSM_DISABLE_EIA0 1
 VBSM_REL_CAP 1
-VBSM_MME_NAME "vmme_standalone"
+VBSM_MME_NAME "vmmestandalone"
 VBSM_S1C_SCTP_INSTREAMS 10
 VBSM_S1C_SCTP_OUTSTREAMS 10
 VBSM_MAX_ENB  2
@@ -89,4 +89,4 @@ VBSM_NO_OFGUMMEIS 1
 VBSM_MMECODE  1
 VBSM_MMEGRPID 1
 VBSM_NO_OF_TAI 1
-VBSM_TAI_LIST    {{1,2,0,8,0,1,1}}
+VBSM_TAI_LIST    (1, 2, 0, 8, 0, 1, 1)
