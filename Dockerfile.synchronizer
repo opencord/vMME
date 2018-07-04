@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # xosproject/vmme-synchronizer
-FROM xosproject/xos-synchronizer-base:candidate
+FROM xosproject/xos-synchronizer-base:2.0.0
 
 COPY xos/synchronizer /opt/xos/synchronizers/vmme
 COPY VERSION /opt/xos/synchronizers/vmme/
